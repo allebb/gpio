@@ -18,14 +18,14 @@
     }
   ],
   "require": {
-    "php": ">=5.5.0"
+    "php": ">=7.0.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.8.*"
+    "phpunit/phpunit": "6.2.*"
   },
   "autoload": {
     "psr-4": {
-      "Ballen\\GPIO\\": "lib/"
+      "Ballen\\GPIO\\": "src/"
     }
   }
 }
