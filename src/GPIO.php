@@ -68,7 +68,7 @@ class GPIO
      * @param int $type The pin type (input or output) - Use GPIO::IN and GPIO::OUT
      * @return Pin
      */
-    public function setup(int $pin, string $type): Pin
+    public function pin(int $pin, string $type): Pin
     {
         return new Pin($pin, $type, $this->ioAdapter);
     }

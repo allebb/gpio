@@ -8,7 +8,7 @@ use Ballen\GPIO\GPIO;
 $gpio = new GPIO();
 
 // Configure our 'LED' output...
-$led = $gpio->setup(18, GPIO::OUT);
+$led = $gpio->pin(18, GPIO::OUT);
 
 // Create a basic loop that runs continuously...
 while (true) {

@@ -84,7 +84,7 @@ class Pin
         if ($this->type == GPIO::IN) {
             throw new GPIOException('Setting the value of a GPIO input pin is not supported!');
         }
-        return $this->adapter->write($this->pin, $value);
+        return $this->adapter->write($this->pin, intval($value));
     }
 
     /**
