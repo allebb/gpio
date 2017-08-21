@@ -53,20 +53,10 @@ class GPIO
      * @param int $pin The GPIO pin number
      * @param int $type The pin type (input or output) - Use GPIO::IN and GPIO::OUT
      * @return Pin
-     * @throws GPIOException
      */
     public function setup(int $pin, int $type): Pin
     {
-
-        if (!in_array($type, ["in", "out"])) {
-            throw new GPIOException("Invalid pin type specified, supported types are 'in' and 'out'.");
-        }
-
-        if (in_array($pin, GPIO::PINS)) {
-            return new Pin($pin, $type);
-        }
-
-        throw new GPIOException("Pin number {$pin} is not supported and therefore cannot be set.");
+        return new Pin($pin, $type, $this->ioAdapter);
     }
 
     /**
