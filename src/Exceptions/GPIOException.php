@@ -1,6 +1,8 @@
 <?php
 namespace Ballen\GPIO\Exceptions;
 
+use Throwable;
+
 /**
  * GPIO
  * A RaspberryPi GPIO library written in PHP.
@@ -14,4 +16,8 @@ namespace Ballen\GPIO\Exceptions;
 class GPIOException extends \Exception
 {
 
+    public function __construct($message = "", $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
 }
