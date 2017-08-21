@@ -17,6 +17,13 @@ class VfsAdapter implements AdapterInterface
 {
 
     /**
+     * In-memory GPIO state storage.
+     *
+     * @var array
+     */
+    public $storage = [];
+
+    /**
      * Write a value to an output pin.
      *
      * @param int $pin The BCM pin number.
@@ -25,7 +32,8 @@ class VfsAdapter implements AdapterInterface
      */
     public function write(int $pin, int $value): bool
     {
-        // TODO: Implement write() method.
+        $this->storage[$pin] = $value;
+        return true;
     }
 
     /**
@@ -36,6 +44,9 @@ class VfsAdapter implements AdapterInterface
      */
     public function read(int $pin): int
     {
-        // TODO: Implement read() method.
+        if (!isset($this->storage[$pin])) {
+            return 0;
+        }
+        return $this->storage[$pin];
     }
 }

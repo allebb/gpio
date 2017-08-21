@@ -1,10 +1,19 @@
 <?php
-
 namespace Ballen\GPIO;
 
 use Ballen\GPIO\Exceptions\GPIOException;
 use Ballen\GPIO\Interfaces\AdapterInterface;
 
+/**
+ * GPIO
+ * A RaspberryPi GPIO library written in PHP.
+ *
+ * @author Bobby Allen <ballen@bobbyallen.me>
+ * @license http://www.gnu.org/licenses/gpl-3.0.html
+ * @link https://github.com/allebb/gpio
+ * @link http://www.bobbyallen.me
+ * @package Ballen\GPIO
+ */
 class Pin
 {
 
@@ -41,8 +50,9 @@ class Pin
         $this->adapter = $adapter;
 
         $this->validatePin($pin);
-        $this->validateType($type);
+        $this->pin = $pin;
 
+        $this->validateType($type);
         $this->type = $type;
     }
 
@@ -75,16 +85,16 @@ class Pin
     /**
      * Set the value of a GPIO output pin.
      *
-     * @param int $value The output state to set (GPIO::HIGH or GPIO::LOW)
+     * @param int $state The output state to set (GPIO::HIGH or GPIO::LOW)
      * @return bool
      * @throws GPIOException
      */
-    public function setValue(int $value): bool
+    public function setValue(int $state): bool
     {
         if ($this->type == GPIO::IN) {
             throw new GPIOException('Setting the value of a GPIO input pin is not supported!');
         }
-        return $this->adapter->write($this->pin, intval($value));
+        return $this->adapter->write($this->pin, $state);
     }
 
     /**
