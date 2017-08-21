@@ -2,9 +2,7 @@
 namespace Ballen\GPIO;
 
 use Ballen\GPIO\Adapters\RPiAdapter;
-use Ballen\GPIO\Exceptions\GPIOException;
 use Ballen\GPIO\Interfaces\AdapterInterface;
-use PHPUnit\Runner\Exception;
 
 /**
  * GPIO
@@ -18,15 +16,31 @@ use PHPUnit\Runner\Exception;
 class GPIO
 {
 
+    /**
+     * GPIO Pin State Low
+     */
     const LOW = 0;
 
+    /**
+     * GPIO Pin State High
+     */
     const HIGH = 1;
 
+    /**
+     * GPIO Pin Type Input
+     */
     const IN = "in";
 
+    /**
+     * GPIO Pin Type Output
+     */
     const OUT = "out";
 
+    /**
+     * Supported GPIO BCM Pin numbers.
+     */
     const PINS = [4, 5, 6, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
+    
     /**
      * The GPIO Interface Adapter.
      *
