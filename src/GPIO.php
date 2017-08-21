@@ -40,7 +40,7 @@ class GPIO
      * Supported GPIO BCM Pin numbers.
      */
     const PINS = [4, 5, 6, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
-    
+
     /**
      * The GPIO Interface Adapter.
      *
@@ -55,7 +55,7 @@ class GPIO
      */
     public function __construct(AdapterInterface $adapter = null)
     {
-        $this->ioAdapter = RPiAdapter::class;
+        $this->ioAdapter = new RPiAdapter();
         if ($adapter) {
             $this->ioAdapter = $adapter;
         }
@@ -68,7 +68,7 @@ class GPIO
      * @param int $type The pin type (input or output) - Use GPIO::IN and GPIO::OUT
      * @return Pin
      */
-    public function setup(int $pin, int $type): Pin
+    public function setup(int $pin, string $type): Pin
     {
         return new Pin($pin, $type, $this->ioAdapter);
     }
