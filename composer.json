@@ -1,0 +1,31 @@
+{
+  "name": "ballen/gpio",
+  "description": "A RaspberryPi GPIO library written in PHP.",
+  "type": "library",
+  "keywords": [
+    "gpio",
+    "raspberrypi",
+    "rpi",
+    "io"
+  ],
+  "license": "GPLv3",
+  "authors": [
+    {
+      "name": "Bobby Allen",
+      "email": "ballen@bobbyallen.me",
+      "homepage": "http://bobbyallen.me",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.8.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ballen\\GPIO\\": "lib/"
+    }
+  }
+}
