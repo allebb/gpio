@@ -1,6 +1,7 @@
 <?php
 namespace Ballen\GPIO\Adapters;
 
+use Ballen\GPIO\Exceptions\GPIOException;
 use Ballen\GPIO\Interfaces\AdapterInterface;
 
 /**
@@ -27,6 +28,8 @@ class RPiAdapter implements AdapterInterface
      */
     public function setDirection(int $pin, string $direction): bool
     {
+        $this->export($pin);
+        
         system("echo {$direction} > /sys/class/gpio/gpio{$pin}/direction");
 
         if (!file_exists("/sys/class/gpio/gpio{$pin}/direction")) {
@@ -47,7 +50,15 @@ class RPiAdapter implements AdapterInterface
      */
     public function write(int $pin, int $value): bool
     {
+        system("echo {$value} /sys/class/gpio/gpio{$pin}/value");
 
+        if (!file_exists("/sys/class/gpio/gpio{$pin}/value")) {
+            return false;
+        }
+        if (file_get_contents("/sys/class/gpio/gpio{$pin}/value") != $value) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -55,10 +66,14 @@ class RPiAdapter implements AdapterInterface
      *
      * @param int $pin The BCM pin number
      * @return int The current value of the pin.
+     * @throws GPIOException
      */
     public function read(int $pin): int
     {
-
+        if (!file_exists("/sys/class/gpio/gpio{$pin}/value")) {
+            throw new GPIOException("The pin value does not appear to be set, did you forget to run setDirection?");
+        }
+        return intval(file_get_contents("/sys/class/gpio/gpio{$pin}/value"));
     }
 
     /**
