@@ -71,8 +71,9 @@ class GPIOTest extends TestCase
     public function testSettingInvalidValue()
     {
         $gpio = new GPIO($this->vfsAdapter);
-        $pinTest = $gpio->pin(4, GPIO::OUT);
-        $pinTest->setValue(GPIO::IN);
-        $this->assertEquals(1, $pinTest->getValue());
+        $pinTest = $gpio->pin(4, GPIO::IN);
+        $this->expectException(GPIOException::class);
+        $this->expectExceptionMessage('Setting the value of a GPIO input pin is not supported!');
+        $pinTest->setValue(GPIO::HIGH);
     }
 }
