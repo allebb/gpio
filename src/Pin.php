@@ -49,6 +49,8 @@ class Pin
     {
         $this->adapter = $adapter;
 
+        $this->adapter->setDirection($pin, $type);
+
         $this->validatePin($pin);
         $this->pin = $pin;
 

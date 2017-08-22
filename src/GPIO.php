@@ -65,7 +65,7 @@ class GPIO
      * Configure a pin
      *
      * @param int $pin The GPIO pin number
-     * @param int $type The pin type (input or output) - Use GPIO::IN and GPIO::OUT
+     * @param string $type The pin type (input or output) - Use GPIO::IN and GPIO::OUT
      * @return Pin
      */
     public function pin(int $pin, string $type): Pin
