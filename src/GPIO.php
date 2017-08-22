@@ -81,7 +81,7 @@ class GPIO
     public function clear()
     {
         foreach (GPIO::PINS as $pin) {
-            $reset = new Pin($pin, GPIO::OUT);
+            $reset = new Pin($pin, GPIO::OUT, $this->ioAdapter);
             $reset->setValue(GPIO::LOW);
         }
     }

@@ -39,7 +39,7 @@ class GPIOTest extends TestCase
 
     public function testNewValidPin()
     {
-        $gpio = new GPIO();
+        $gpio = new GPIO($this->vfsAdapter);
         $pinTest = $gpio->pin(4, GPIO::OUT);
         $this->assertInstanceOf(Pin::class, $pinTest);
     }
@@ -75,5 +75,27 @@ class GPIOTest extends TestCase
         $this->expectException(GPIOException::class);
         $this->expectExceptionMessage('Setting the value of a GPIO input pin is not supported!');
         $pinTest->setValue(GPIO::HIGH);
+    }
+
+    public function testGettingANonSetValue()
+    {
+        $gpio = new GPIO($this->vfsAdapter);
+        $pinTest = $gpio->pin(4, GPIO::IN);
+        $this->assertEquals(0, $pinTest->getValue());
+    }
+
+    public function testClearAllPins()
+    {
+        $gpio = new GPIO($this->vfsAdapter);
+        $pinTest = $gpio->pin(4, GPIO::OUT);
+        $pinTest->setValue(GPIO::HIGH);
+
+        $this->assertEquals(1, $pinTest->getValue());
+
+        // Clear all pins...
+        $gpio->clear();
+
+        $this->assertEquals(0, $pinTest->getValue());
+
     }
 }
