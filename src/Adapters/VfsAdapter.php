@@ -24,6 +24,18 @@ class VfsAdapter implements AdapterInterface
     public $storage = [];
 
     /**
+     * Set the direction of the pin (input or output)
+     *
+     * @param int $pin The BCM pin number
+     * @param string $direction The type/direction of the pin - Use GPIO::IN and GPIO::OUT
+     * @return bool
+     */
+    public function setDirection(int $pin, string $direction): bool
+    {
+        return true;
+    }
+
+    /**
      * Write a value to an output pin.
      *
      * @param int $pin The BCM pin number.
