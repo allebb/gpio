@@ -29,7 +29,7 @@ class RPiAdapter implements AdapterInterface
     public function setDirection(int $pin, string $direction): bool
     {
         $this->export($pin);
-        
+
         system("echo {$direction} > /sys/class/gpio/gpio{$pin}/direction");
 
         if (!file_exists("/sys/class/gpio/gpio{$pin}/direction")) {
@@ -50,7 +50,7 @@ class RPiAdapter implements AdapterInterface
      */
     public function write(int $pin, int $value): bool
     {
-        system("echo {$value} /sys/class/gpio/gpio{$pin}/value");
+        system("echo {$value} > /sys/class/gpio/gpio{$pin}/value");
 
         if (!file_exists("/sys/class/gpio/gpio{$pin}/value")) {
             return false;
