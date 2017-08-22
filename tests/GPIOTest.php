@@ -1,6 +1,9 @@
 <?php
 use PHPUnit\Framework\TestCase;
 use Ballen\GPIO\GPIO;
+use Ballen\GPIO\Pin;
+use Ballen\GPIO\Adapters\VfsAdapter;
+use Ballen\GPIO\Exceptions\GPIOException;
 
 /**
  * GPIO
@@ -14,4 +17,62 @@ use Ballen\GPIO\GPIO;
 class GPIOTest extends TestCase
 {
 
+    private $vfsAdapter;
+
+    public function setUp()
+    {
+        $this->vfsAdapter = new VfsAdapter();
+        parent::setUp(); //
+    }
+
+    public function testReceievesDefaultAdapter()
+    {
+        $gpio = new GPIO();
+        $this->assertInstanceOf(GPIO::class, $gpio);
+    }
+
+    public function testVfsAdapterInstantiation()
+    {
+        $gpio = new GPIO($this->vfsAdapter);
+        $this->assertInstanceOf(GPIO::class, $gpio);
+    }
+
+    public function testNewValidPin()
+    {
+        $gpio = new GPIO();
+        $pinTest = $gpio->pin(4, GPIO::OUT);
+        $this->assertInstanceOf(Pin::class, $pinTest);
+    }
+
+    public function testInvalidPinNumber()
+    {
+        $gpio = new GPIO($this->vfsAdapter);
+        $this->expectException(GPIOException::class);
+        $this->expectExceptionMessage('Pin number 1 is not supported and therefore cannot be set.');
+        $pinTest = $gpio->pin(1, GPIO::OUT);
+    }
+
+    public function testInvalidPinType()
+    {
+        $gpio = new GPIO($this->vfsAdapter);
+        $this->expectException(GPIOException::class);
+        $this->expectExceptionMessage('Invalid pin type specified, supported types are \'in\' and \'out\'');
+        $pinTest = $gpio->pin(4, 'both');
+    }
+
+    public function testSettingValidValue()
+    {
+        $gpio = new GPIO($this->vfsAdapter);
+        $pinTest = $gpio->pin(4, GPIO::OUT);
+        $pinTest->setValue(GPIO::HIGH);
+        $this->assertEquals(1, $pinTest->getValue());
+    }
+
+    public function testSettingInvalidValue()
+    {
+        $gpio = new GPIO($this->vfsAdapter);
+        $pinTest = $gpio->pin(4, GPIO::OUT);
+        $pinTest->setValue(GPIO::IN);
+        $this->assertEquals(1, $pinTest->getValue());
+    }
 }
