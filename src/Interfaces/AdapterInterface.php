@@ -13,7 +13,6 @@ namespace Ballen\GPIO\Interfaces;
  */
 interface AdapterInterface
 {
-
     /**
      * Write a value to an output pin.
      *
@@ -30,5 +29,14 @@ interface AdapterInterface
      * @return int The current value of the pin.
      */
     public function read(int $pin): int;
+
+    /**
+     * Set the direction of the pin (input or output)
+     *
+     * @param int $pin The BCM pin number
+     * @param string $direction The type/direction of the pin - Use GPIO::IN and GPIO::OUT
+     * @return bool
+     */
+    public function setDirection(int $pin, string $direction): bool;
 
 }
