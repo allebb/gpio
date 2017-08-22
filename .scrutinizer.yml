@@ -1,0 +1,12 @@
+filter:
+    paths: [src/*]
+    excluded_paths: [examples/*, tests/*]
+checks:
+    php: true
+tools:
+    external_code_coverage:
+        timeout: 600
+        runs: 2
+    php_code_sniffer:
+        config:
+            standard: "PSR2"
