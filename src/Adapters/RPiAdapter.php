@@ -24,9 +24,10 @@ class RPiAdapter implements AdapterInterface
      *
      * @param int $pin The BCM pin number
      * @param string $direction The type/direction of the pin - Use GPIO::IN and GPIO::OUT
+     * @param bool $invert Invert the logic so that high->low and low->high
      * @return bool
      */
-    public function setDirection(int $pin, string $direction): bool
+    public function setDirection(int $pin, string $direction, bool $invert = false): bool
     {
         $this->export($pin);
 
@@ -38,6 +39,12 @@ class RPiAdapter implements AdapterInterface
         if (file_get_contents("/sys/class/gpio/gpio{$pin}/direction") != $direction) {
             return false;
         }
+
+        if($invert){
+            $inverted = intval($invert);
+            system("echo {$inverted} > /sys/class/gpio/gpio{$pin}/active_low");
+        }
+
         return true;
     }
 

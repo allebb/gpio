@@ -1,4 +1,4 @@
-# gpio
+# GPIO
 
 [![Build Status](https://scrutinizer-ci.com/g/allebb/gpio/badges/build.png?b=master)](https://scrutinizer-ci.com/g/allebb/gpio/build-status/master)
 [![Code Coverage](https://scrutinizer-ci.com/g/allebb/gpio/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/allebb/gpio/?branch=master)
@@ -14,7 +14,7 @@ A RaspberryPi GPIO library written in PHP, This library makes it a breeze to wor
 
 * PHP >= 7.0.0
 
-This library is unit tested against PHP 7.0, 7.1 and HHVM!
+This library is unit tested against PHP 7.0, 7.1 and the bleeding edge (nightly build)!
 
 License
 -------
@@ -62,7 +62,7 @@ Tests and coverage
 
 This library is fully unit tested using [PHPUnit](https://phpunit.de/).
 
-I use [TravisCI](https://travis-ci.org/) for continuous integration, which triggers tests for PHP 7.0, 7.1 and HHVM every time a commit is pushed.
+I use [TravisCI](https://travis-ci.org/) for continuous integration, which triggers tests for PHP 7.0, 7.1 and the latest nightly build every time a commit is pushed.
 
 If you wish to run the tests yourself you should run the following:
 
