@@ -40,12 +40,20 @@ class RPiAdapter implements AdapterInterface
             return false;
         }
 
-        if($invert){
-            $inverted = intval($invert);
-            system("echo {$inverted} > /sys/class/gpio/gpio{$pin}/active_low");
+        if (!$invert) {
+            return true;
         }
 
-        return true;
+        $inverted = intval($invert);
+        system("echo {$inverted} > /sys/class/gpio/gpio{$pin}/active_low");
+
+        if (!file_exists("/sys/class/gpio/gpio{$pin}/active_low")) {
+            return false;
+        }
+        if (file_get_contents("/sys/class/gpio/gpio{$pin}/active_low") != $inverted) {
+            return false;
+        }
+
     }
 
     /**
