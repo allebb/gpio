@@ -30,29 +30,18 @@ class RPiAdapter implements AdapterInterface
     public function setDirection(int $pin, string $direction, bool $invert = false): bool
     {
         $this->export($pin);
-
         system("echo {$direction} > /sys/class/gpio/gpio{$pin}/direction");
 
-        if (!file_exists("/sys/class/gpio/gpio{$pin}/direction")) {
-            return false;
-        }
-        if (file_get_contents("/sys/class/gpio/gpio{$pin}/direction") != $direction) {
-            return false;
+        if ($invert) {
+            $inverted = intval($invert);
+            system("echo {$inverted} > /sys/class/gpio/gpio{$pin}/active_low");
         }
 
-        if (!$invert) {
+        if (file_exists("/sys/class/gpio/gpio{$pin}/direction") && (file_get_contents("/sys/class/gpio/gpio{$pin}/direction") == $direction)) {
             return true;
         }
 
-        $inverted = intval($invert);
-        system("echo {$inverted} > /sys/class/gpio/gpio{$pin}/active_low");
-
-        if (!file_exists("/sys/class/gpio/gpio{$pin}/active_low")) {
-            return false;
-        }
-        if (file_get_contents("/sys/class/gpio/gpio{$pin}/active_low") != $inverted) {
-            return false;
-        }
+        return false;
 
     }
 
@@ -70,9 +59,11 @@ class RPiAdapter implements AdapterInterface
         if (!file_exists("/sys/class/gpio/gpio{$pin}/value")) {
             return false;
         }
+
         if (file_get_contents("/sys/class/gpio/gpio{$pin}/value") != $value) {
             return false;
         }
+
         return true;
     }
 
@@ -100,7 +91,6 @@ class RPiAdapter implements AdapterInterface
     private function export(int $pin)
     {
         system("echo {$pin} > " . self::GPIO_PATH . "/export");
-
         if (file_exists("/sys/class/gpio/gpio{$pin}")) {
             return true;
         }
