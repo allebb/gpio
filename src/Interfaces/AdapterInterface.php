@@ -35,8 +35,9 @@ interface AdapterInterface
      *
      * @param int $pin The BCM pin number
      * @param string $direction The type/direction of the pin - Use GPIO::IN and GPIO::OUT
+     * @param bool $invert Invert the logic so that high->low and low->high
      * @return bool
      */
-    public function setDirection(int $pin, string $direction): bool;
+    public function setDirection(int $pin, string $direction, bool $invert = false): bool;
 
 }
