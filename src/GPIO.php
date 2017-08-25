@@ -66,11 +66,12 @@ class GPIO
      *
      * @param int $pin The GPIO pin number
      * @param string $type The pin type (input or output) - Use GPIO::IN and GPIO::OUT
+     * @param bool $invert Invert the logic so that high->low and low->high
      * @return Pin
      */
-    public function pin(int $pin, string $type): Pin
+    public function pin(int $pin, string $type, bool $invert = false): Pin
     {
-        return new Pin($pin, $type, $this->ioAdapter);
+        return new Pin($pin, $type, $this->ioAdapter, $invert);
     }
 
     /**

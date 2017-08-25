@@ -44,12 +44,13 @@ class Pin
      * @param int $pin The BCM pin number
      * @param string $type The pin type (Input or Output)
      * @param AdapterInterface $adapter The GPIO adapter interface
+     * @param bool $invert Invert the logic so that high->low and low->high
      */
-    public function __construct(int $pin, string $type, AdapterInterface $adapter)
+    public function __construct(int $pin, string $type, AdapterInterface $adapter, bool $invert = false)
     {
         $this->adapter = $adapter;
 
-        $this->adapter->setDirection($pin, $type);
+        $this->adapter->setDirection($pin, $type, $invert);
 
         $this->validatePin($pin);
         $this->pin = $pin;
