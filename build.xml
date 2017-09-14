@@ -1,4 +1,4 @@
-<project name="GPIO" description="Jenkins Ant Build Script" default="test">
+<project name="GPIO" default="test">
     <target name="test">
         <phpunit haltonfailure="true" printsummary="true">
             <batchtest>
