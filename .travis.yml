@@ -10,7 +10,7 @@ php:
 
 sudo: false
 
-install: travis_retry composer install --no-interaction --prefer-source --dev
+install: travis_retry composer install --no-interaction --prefer-source
 
 script: vendor/bin/phpunit --coverage-clover=coverage.clover
 
