@@ -14,7 +14,7 @@ A RaspberryPi GPIO library written in PHP, This library makes it a breeze to wor
 
 * PHP >= 7.1.0
 
-This library is unit tested against PHP 7.1, 7.2 and the bleeding edge (nightly build)!
+This library is unit tested against PHP 7.1, 7.2, 7.3 and the bleeding edge (nightly build)!
 
 License
 -------
