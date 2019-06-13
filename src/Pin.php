@@ -1,4 +1,5 @@
 <?php
+
 namespace Ballen\GPIO;
 
 use Ballen\GPIO\Exceptions\GPIOException;
@@ -45,6 +46,7 @@ class Pin
      * @param string $type The pin type (Input or Output)
      * @param AdapterInterface $adapter The GPIO adapter interface
      * @param bool $invert Invert the logic so that high->low and low->high
+     * @throws GPIOException
      */
     public function __construct(int $pin, string $type, AdapterInterface $adapter, bool $invert = false)
     {

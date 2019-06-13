@@ -1,7 +1,9 @@
 <?php
+
 namespace Ballen\GPIO;
 
 use Ballen\GPIO\Adapters\RPiAdapter;
+use Ballen\GPIO\Exceptions\GPIOException;
 use Ballen\GPIO\Interfaces\AdapterInterface;
 
 /**
@@ -68,6 +70,7 @@ class GPIO
      * @param string $type The pin type (input or output) - Use GPIO::IN and GPIO::OUT
      * @param bool $invert Invert the logic so that high->low and low->high
      * @return Pin
+     * @throws GPIOException
      */
     public function pin(int $pin, string $type, bool $invert = false): Pin
     {
@@ -78,6 +81,8 @@ class GPIO
      * Reset all of the GPIO pins.
      *
      * @return void
+     * @throws GPIOException
+     *
      */
     public function clear()
     {
