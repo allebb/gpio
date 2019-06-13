@@ -33,7 +33,7 @@ class RPiAdapter implements AdapterInterface
     {
         $this->export($pin);
 
-        if (file_exists("/sys/class/gpio/gpio{$pin}/direction") && trim(file_get_contents("/sys/class/gpio/gpio{$pin}/direction")) !== $direction) {
+        if (file_exists("/sys/class/gpio/gpio{$pin}/direction") && trim(file_get_contents("/sys/class/gpio/gpio{$pin}/direction")) != $direction) {
             system("echo {$direction} > /sys/class/gpio/gpio{$pin}/direction");
         }
 
