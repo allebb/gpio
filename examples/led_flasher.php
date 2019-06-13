@@ -6,8 +6,11 @@ use Ballen\GPIO\GPIO;
 use Ballen\GPIO\Pin;
 use Ballen\GPIO\Adapters\VfsAdapter;
 
-// Create a new instane of the GPIO class.
+// Create a new instance of the GPIO class.
 $gpio = new GPIO(new VfsAdapter());
+
+// To run this example on a real Raspberry Pi please uncomment the next line (to use the real hardware adapter) and disable the virtual filesystem adapter above).
+//$gpio = new GPIO();
 
 // Configure our 'LED' output...
 $led = $gpio->pin(18, GPIO::OUT);
