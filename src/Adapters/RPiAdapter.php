@@ -39,7 +39,7 @@ class RPiAdapter implements AdapterInterface
 
         if ($invert) {
             $inverted = intval($invert);
-            if (file_get_contents("/sys/class/gpio/gpio{$pin}/active_low") !== $inverted) {
+            if (file_get_contents("/sys/class/gpio/gpio{$pin}/active_low") != $inverted) {
                 system("echo {$inverted} > /sys/class/gpio/gpio{$pin}/active_low");
             }
         }
