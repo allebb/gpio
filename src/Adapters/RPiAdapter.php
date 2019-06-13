@@ -14,6 +14,7 @@ use Ballen\GPIO\Interfaces\AdapterInterface;
  * @link https://github.com/allebb/gpio
  * @link http://www.bobbyallen.me
  * @package Ballen\GPIO\Adapters
+ * @codeCoverageIgnore
  */
 class RPiAdapter implements AdapterInterface
 {
