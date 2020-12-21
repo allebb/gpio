@@ -1,5 +1,7 @@
 # GPIO
 
+![Build](https://github.com/allebb/gpio/workflows/Tests/badge.svg)
+
 [![Build Status](https://scrutinizer-ci.com/g/allebb/gpio/badges/build.png?b=master)](https://scrutinizer-ci.com/g/allebb/gpio/badges/build.png?b=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/allebb/gpio/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/allebb/gpio/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/allebb/gpio/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/allebb/gpio/?branch=master)
