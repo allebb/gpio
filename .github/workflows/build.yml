@@ -53,7 +53,8 @@ jobs:
 
       - name: Upload code coverage to Codecov
         uses: codecov/codecov-action@v1
-          with: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
           flags: tests
           name: codedev-umbrella
