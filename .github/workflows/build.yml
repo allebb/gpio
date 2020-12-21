@@ -1,4 +1,4 @@
-name: Tests
+name: build
 
 on: [ push, pull_request ]
 
@@ -6,11 +6,12 @@ jobs:
   build-test:
     name: GPIO (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
+
     strategy:
       fail-fast: false
       matrix:
-      #  php-versions: [ '7.3', '7.4', '8.0' ]
-      php-versions: [ '7.3', '7.4']
+        #php-versions: [ '7.3', '7.4', '8.0' ]
+        php-versions: [ '7.3', '7.4' ]
 
     steps:
       - name: Checkout
