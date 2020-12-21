@@ -26,22 +26,25 @@ jobs:
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-      - name: Cache composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          # Use composer.json for key, if composer.lock is not committed.
-          # key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
+      #- name: Cache composer dependencies
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: ${{ steps.composer-cache.outputs.dir }}
+      #    # Use composer.json for key, if composer.lock is not committed.
+      #    # key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+      #    key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+      #    restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
+      #- name: PHPUnit Tests
+      #  uses: php-actions/phpunit@v1
+      #  with:
+      #    bootstrap: vendor/autoload.php
+      #    configuration: phpunit.xml
+      #    args: --coverage-text
+      #    memory_limit: 256M
+
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v1
-        with:
-          bootstrap: vendor/autoload.php
-          configuration: phpunit.xml
-          args: --coverage-text
-          memory_limit: 256M
+        run: vendor/bin/phpunit --coverage-text
