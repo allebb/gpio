@@ -49,4 +49,13 @@ jobs:
       #    memory_limit: 256M
 
       - name: PHPUnit Tests
-        run: vendor/bin/phpunit --coverage-text
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+      - name: Upload code coverage to Codecov
+        uses: codecov/codecov-action@v1
+          with: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          flags: tests
+          name: codedev-umbrella
+          yml: ./codedev.yml
+          fail_ci_if_error: true
