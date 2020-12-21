@@ -6,3 +6,4 @@ Thumbs.db
 !*.yml
 /.php_cs.cache
 /php-cs-fixer.phar
+.phpunit.result.cache
