@@ -3,7 +3,7 @@
 [![Build](https://github.com/allebb/gpio/workflows/build/badge.svg)](https://github.com/allebb/gpio/actions)
 [![Code Coverage](https://codecov.io/gh/allebb/gpio/branch/master/graph/badge.svg)](https://codecov.io/gh/allebb/gpio)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/allebb/gpio/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/allebb/gpio/?branch=master)
-[![Code Climate](https://codeclimate.com/github/allebb/gpio/badges/gpa.svg)](https://codeclimate.com/github/allebb/metar)
+[![Code Climate](https://codeclimate.com/github/allebb/gpio/badges/gpa.svg)](https://codeclimate.com/github/allebb/gpio)
 [![Latest Stable Version](https://poser.pugx.org/ballen/gpio/v/stable)](https://packagist.org/packages/ballen/gpio)
 [![Latest Unstable Version](https://poser.pugx.org/ballen/gpio/v/unstable)](https://packagist.org/packages/ballen/gpio)
 [![License](https://poser.pugx.org/ballen/gpio/license)](https://packagist.org/packages/ballen/gpio)

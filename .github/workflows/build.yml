@@ -60,3 +60,11 @@ jobs:
           name: codedev-umbrella
           yml: ./codedev.yml
           fail_ci_if_error: true
+
+      # For code coverage report we are uploading our code coverage report to scrutinizer
+      - name: Downloading scrutinizer ocular.phar
+        run: wget https://scrutinizer-ci.com/ocular.phar
+
+      # Uploading reports for analysis
+      - name: Uploading code coverage to scrutinize
+        run: php ocular.phar code-coverage:upload --format=php-clover coverage.xml
