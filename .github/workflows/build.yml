@@ -10,8 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        #php-versions: [ '7.3', '7.4', '8.0' ]
-        php-versions: [ '7.1', '7.2', '7.3', '7.4' ]
+        php-versions: [ '7.3', '7.4', '8.0' ]
 
     steps:
       - name: Checkout
@@ -28,25 +27,8 @@ jobs:
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-      #- name: Cache composer dependencies
-      #  uses: actions/cache@v2
-      #  with:
-      #    path: ${{ steps.composer-cache.outputs.dir }}
-      #    # Use composer.json for key, if composer.lock is not committed.
-      #    # key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
-      #    key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-      #    restore-keys: ${{ runner.os }}-composer-
-
       - name: Install Composer dependencies
         run: composer install  --no-suggest --no-progress --prefer-dist --optimize-autoloader
-
-      #- name: PHPUnit Tests
-      #  uses: php-actions/phpunit@v1
-      #  with:
-      #    bootstrap: vendor/autoload.php
-      #    configuration: phpunit.xml
-      #    args: --coverage-text
-      #    memory_limit: 256M
 
       - name: PHPUnit Tests
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
@@ -67,4 +49,5 @@ jobs:
 
       # Uploading reports for analysis
       - name: Uploading code coverage to scrutinize
+        continue-on-error: true
         run: php ocular.phar code-coverage:upload --format=php-clover coverage.xml

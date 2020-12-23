@@ -19,7 +19,7 @@ class GPIOTest extends TestCase
 
     private $vfsAdapter;
 
-    public function setUp()
+    public function setUp() : void
     {
         $this->vfsAdapter = new VfsAdapter();
         parent::setUp(); //

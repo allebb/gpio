@@ -12,9 +12,11 @@ A RaspberryPi GPIO library written in PHP, This library makes it a breeze to wor
 
 ## Requirements
 
-* PHP >= 7.1.0
+* PHP >= 7.3.0
 
-This library is unit tested against PHP 7.1, 7.2, 7.3 and 7.4!
+This library is unit tested against PHP 7.3, 7.4 and 8.0!
+
+If you need to use an older version of PHP, you should instead install the 2.x version of this library (see below for details).
 
 License
 -------
@@ -24,10 +26,16 @@ This library is released under the [GPLv3](https://raw.githubusercontent.com/all
 Installation
 ------------
 
-The recommended way of installing this library is via. [Composer](http://getcomposer.org); To install using Composer type the following command at the console:
+The recommended way of installing the latest version of this library is via. [Composer](http://getcomposer.org); To install using Composer type the following command at the console:
 
 ```shell
 composer require ballen/gpio
+```
+
+**If you need to use an older version of PHP, version 1.x.x supports PHP 7.1 and 7.2, you can install this version using Composer with this command instead:**
+
+```shell
+composer require ballen/gpio ^1.0
 ```
 
 Example usage
@@ -62,7 +70,7 @@ Tests and coverage
 
 This library is fully unit tested using [PHPUnit](https://phpunit.de/).
 
-I use [TravisCI](https://travis-ci.org/) for continuous integration, which triggers tests for PHP 7.1, 7.2, 7.3 and 7.4 every time a commit is pushed.
+I use [GitHub Actions](https://github.com/) for continuous integration, which triggers tests for PHP 7.3, 7.4 and 8.0 every time a commit is pushed.
 
 If you wish to run the tests yourself you should run the following:
 
@@ -74,7 +82,7 @@ composer install
 ./vendor/bin/phpunit
 ```
 
-Code coverage can also be ran and a report generated (this does require XDebug to be installed)...
+Code coverage can also be run and a report generated (this does require XDebug to be installed)...
 
 ```shell
 ./vendor/bin/phpunit --coverage-html ./report
