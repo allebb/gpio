@@ -14,7 +14,7 @@ A RaspberryPi GPIO library written in PHP, This library makes it a breeze to wor
 
 * PHP >= 7.3.0
 
-This library is unit tested against PHP 7.3, 7.4, 8.0 and 8.1!
+This library is unit tested against PHP 7.3, 7.4, 8.0, 8.1 and 8.2!
 
 If you need to use an older version of PHP, you should instead install the 1.x version of this library (see below for details).
 
@@ -70,7 +70,7 @@ Tests and coverage
 
 This library is fully unit tested using [PHPUnit](https://phpunit.de/).
 
-I use [GitHub Actions](https://github.com/) for continuous integration, which triggers tests for PHP 7.3, 7.4, 8.0 and 8.1 every time a commit is pushed.
+I use [GitHub Actions](https://github.com/) for continuous integration, which triggers tests for PHP 7.3, 7.4, 8.0, 8.1 and 8.2 every time a commit is pushed.
 
 If you wish to run the tests yourself you should run the following:
 
